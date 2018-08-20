@@ -6,6 +6,7 @@ var autoprefixer = require('gulp-autoprefixer');
 var pug 		 = require('gulp-pug');
 var plumber 	 = require('gulp-plumber');
 var sourcemaps   = require('gulp-sourcemaps');
+var image  = require('gulp-image');
 
 gulp.task('styl', function () {
 	return gulp.src('app/styl/**/*.styl')
@@ -38,6 +39,12 @@ gulp.task('clean', function() {
 	return del.sync('dist');
 });
 
+gulp.task('image', function () {
+	gulp.src('app/img/*')
+			.pipe(image())
+			.pipe(gulp.dest('dist/img'));
+});
+
 gulp.task('watch', ['browser-sync', 'html', 'styl'], function() {
 	gulp.watch('app/pug/pages/*.pug', ['html']);
 	gulp.watch('app/styl/**/*.styl', ['styl']);
@@ -45,7 +52,7 @@ gulp.task('watch', ['browser-sync', 'html', 'styl'], function() {
 	gulp.watch('dist/js/**/*.js', browserSync.reload);
 });
 
-gulp.task('build', ['clean', 'img', 'styl', ], function() {
+gulp.task('build', ['clean', 'image', 'styl', ], function() {
 
 	var buildCss = gulp.src('app/css/main.css')
 		.pipe(gulp.dest('dist/css'));
