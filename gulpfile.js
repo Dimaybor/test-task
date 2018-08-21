@@ -52,18 +52,18 @@ gulp.task('watch', ['browser-sync', 'html', 'styl'], function() {
 	gulp.watch('dist/js/**/*.js', browserSync.reload);
 });
 
-gulp.task('build', ['clean', 'image', 'styl', ], function() {
+// gulp.task('build', ['clean', 'image', 'styl', ], function() {
 
-	var buildCss = gulp.src('app/css/main.css')
-		.pipe(gulp.dest('dist/css'));
+// 	var buildCss = gulp.src('app/css/main.css')
+// 		.pipe(gulp.dest('dist/css'));
 
-	var buildFonts = gulp.src('app/fonts/**/*')
-		.pipe(gulp.dest('dist/fonts'));
+// 	var buildFonts = gulp.src('app/fonts/**/*')
+// 		.pipe(gulp.dest('dist/fonts'));
 
-	var buildJs = gulp.src('app/js/**/*')
-		.pipe(gulp.dest('dist/js'));
+// 	var buildJs = gulp.src('app/js/**/*')
+// 		.pipe(gulp.dest('dist/js'));
 
-	var buildHtml = gulp.src('app/*.html')
-		.pipe(gulp.dest('dist'));
-});
+// 	var buildHtml = gulp.src('app/*.html')
+// 		.pipe(gulp.dest('dist'));
+// });
 
