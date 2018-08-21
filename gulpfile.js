@@ -1,12 +1,14 @@
 var gulp         = require('gulp');
 var stylus       = require('gulp-stylus');
 var browserSync  = require('browser-sync');
-var del 		 = require('del');  
+var del 		     = require('del');  
 var autoprefixer = require('gulp-autoprefixer');
-var pug 		 = require('gulp-pug');
-var plumber 	 = require('gulp-plumber');
+var pug 		     = require('gulp-pug');
+var plumber 	   = require('gulp-plumber');
 var sourcemaps   = require('gulp-sourcemaps');
-var image  = require('gulp-image');
+var image        = require('gulp-image');
+var cssnano      = require('gulp-cssnano');
+var rename       = require('gulp-rename');
 
 gulp.task('styl', function () {
 	return gulp.src('app/styl/**/*.styl')
@@ -45,7 +47,15 @@ gulp.task('image', function () {
 			.pipe(gulp.dest('dist/img'));
 });
 
-gulp.task('watch', ['browser-sync', 'html', 'styl'], function() {
+gulp.task('css-min', ['styl'], function () {
+	return gulp.src('dist/css/*.css')
+			.pipe(cssnano())
+			.pipe(rename({suffix: '.min'}))
+			.pipe(gulp.dest('dist/css'));
+});
+
+
+gulp.task('watch', ['browser-sync', 'html', 'css-min'], function() {
 	gulp.watch('app/pug/pages/*.pug', ['html']);
 	gulp.watch('app/styl/**/*.styl', ['styl']);
 	gulp.watch('dist/*.html', browserSync.reload);

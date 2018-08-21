@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-// Відкриття попапа нажаттям на button
+// Відкриття попапа нажаттям на фото-мініатюру
 
 	$('.photo-list__mask').on('click', function() {
 		$(this).siblings('.overlay').fadeIn(100);
